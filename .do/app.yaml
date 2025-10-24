@@ -1,0 +1,18 @@
+name: aureuserp
+services:
+- name: web
+  build_command: npm run build
+  run_command: heroku-php-nginx -C nginx.conf public/
+  environment_slug: php
+  github:
+    branch: master
+    deploy_on_push: true
+  health_check:
+    http_path: /up
+  post_deploy_command: |
+    composer dump-autoload --optimize
+    php artisan package:discover || true
+    php artisan config:clear
+    php artisan migrate --force
+    php artisan optimize
+
