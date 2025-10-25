@@ -63,7 +63,7 @@ class SupportServiceProvider extends PackageServiceProvider
     {
         include __DIR__ . '/helpers.php';
 
-        Livewire::component('accept-invitation', AcceptInvitation::class);
+        // Livewire::component('accept-invitation', AcceptInvitation::class);
 
         Gate::policy(Role::class, RolePolicy::class);
 

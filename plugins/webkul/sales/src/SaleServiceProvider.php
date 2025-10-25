@@ -68,7 +68,7 @@ class SaleServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        Livewire::component('summary', Summary::class);
+        // Livewire::component('summary', Summary::class);
     }
 
     public function packageRegistered(): void

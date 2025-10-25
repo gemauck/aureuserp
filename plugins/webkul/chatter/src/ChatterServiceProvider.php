@@ -35,8 +35,8 @@ class ChatterServiceProvider extends PackageServiceProvider
     {
         $this->registerCustomCss();
 
-        Livewire::component('chatter-panel', ChatterPanel::class);
-        Livewire::component('chatter-header-actions', ChatterHeaderActions::class);
+        // Livewire::component('chatter-panel', ChatterPanel::class);
+        // Livewire::component('chatter-header-actions', ChatterHeaderActions::class);
     }
 
     public function registerCustomCss()
