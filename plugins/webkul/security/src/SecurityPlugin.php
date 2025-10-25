@@ -30,11 +30,15 @@ class SecurityPlugin implements Plugin
                     ->discoverClusters(in: $this->getPluginBasePath('/Filament/Widgets'), for: 'Webkul\\Security\\Filament\\Widgets');
             });
 
-        if (
-            ! app()->runningInConsole() &&
-            ! app(UserSettings::class)?->enable_reset_password
-        ) {
-            $panel->passwordReset(false);
+        try {
+            if (
+                ! app()->runningInConsole() &&
+                ! app(UserSettings::class)?->enable_reset_password
+            ) {
+                $panel->passwordReset(false);
+            }
+        } catch (\Exception $e) {
+            // Silently fail if settings aren't available yet
         }
     }
 

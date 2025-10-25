@@ -164,26 +164,31 @@ class WebsitePlugin implements Plugin
 
     protected function getContacts(): array
     {
-        $contacts = [];
+        try {
+            $contacts = [];
 
-        $contactSettings = app(ContactSettings::class);
+            $contactSettings = app(ContactSettings::class);
 
-        if ($contactSettings->email) {
-            $contacts['email'] = $contactSettings->email;
+            if ($contactSettings->email) {
+                $contacts['email'] = $contactSettings->email;
+            }
+
+            if ($contactSettings->phone) {
+                $contacts['phone'] = $contactSettings->phone;
+            }
+
+            return $contacts;
+        } catch (\Exception $e) {
+            return [];
         }
-
-        if ($contactSettings->phone) {
-            $contacts['phone'] = $contactSettings->phone;
-        }
-
-        return $contacts;
     }
 
     protected function getSocialLinks(): Collection
     {
-        $socialLinks = new Collection;
+        try {
+            $socialLinks = new Collection;
 
-        $contactSettings = app(ContactSettings::class);
+            $contactSettings = app(ContactSettings::class);
 
         if ($contactSettings->facebook) {
             $socialLinks->push(
@@ -275,6 +280,9 @@ class WebsitePlugin implements Plugin
             );
         }
 
-        return $socialLinks;
+            return $socialLinks;
+        } catch (\Exception $e) {
+            return new Collection;
+        }
     }
 }
