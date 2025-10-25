@@ -86,7 +86,7 @@ class AccountServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        Livewire::component('invoice-summary', InvoiceSummary::class);
+        // Livewire::component('invoice-summary', InvoiceSummary::class);
     }
 
     public function packageRegistered(): void
