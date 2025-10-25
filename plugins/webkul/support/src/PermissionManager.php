@@ -10,11 +10,12 @@ class PermissionManager
     public function managePermissions(): void
     {
         // Skip if FilamentShield is not available yet (package discovery not completed)
-        if (!class_exists('BezhanSalleh\\FilamentShield\\Facades\\FilamentShield')) {
+        if (!app()->bound('filament-shield')) {
             return;
         }
         
-        FilamentShield::buildPermissionKeyUsing(function (string $entity, string $affix, string $subject): string {
+        try {
+            FilamentShield::buildPermissionKeyUsing(function (string $entity, string $affix, string $subject): string {
             $affix = Str::snake($affix);
 
             if (
@@ -71,7 +72,11 @@ class PermissionManager
             }
 
             return $affix . '_' . Str::snake($subject);
-        });
+            });
+        } catch (\Exception $e) {
+            // Silently fail if FilamentShield is not available
+            return;
+        }
     }
 
     protected function getConflictingResources(): array
