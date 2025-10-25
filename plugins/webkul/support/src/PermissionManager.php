@@ -9,6 +9,11 @@ class PermissionManager
 {
     public function managePermissions(): void
     {
+        // Skip if FilamentShield is not available yet (package discovery not completed)
+        if (!class_exists('BezhanSalleh\\FilamentShield\\Facades\\FilamentShield')) {
+            return;
+        }
+        
         FilamentShield::buildPermissionKeyUsing(function (string $entity, string $affix, string $subject): string {
             $affix = Str::snake($affix);
 
