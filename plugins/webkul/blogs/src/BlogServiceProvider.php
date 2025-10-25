@@ -44,8 +44,10 @@ class BlogServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        FilamentAsset::register([
-            Css::make('blogs', __DIR__.'/../resources/dist/blogs.css'),
-        ], 'blogs');
+        if (class_exists('Filament\\Support\\Assets\\Asset')) {
+            FilamentAsset::register([
+                Css::make('blogs', __DIR__.'/../resources/dist/blogs.css'),
+            ], 'blogs');
+        }
     }
 }

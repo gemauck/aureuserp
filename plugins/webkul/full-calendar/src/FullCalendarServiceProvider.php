@@ -32,9 +32,11 @@ class FullCalendarServiceProvider extends PackageServiceProvider
 
     public function registerCustomCss()
     {
-        FilamentAsset::register(assets: [
-            Css::make('full-calendar', __DIR__.'/../resources/dist/app.css'),
-            AlpineComponent::make('full-calendar', __DIR__.'/../resources/dist/app.js'),
-        ], package: 'full-calendar');
+        if (class_exists('Filament\\Support\\Assets\\Asset')) {
+            FilamentAsset::register(assets: [
+                Css::make('full-calendar', __DIR__.'/../resources/dist/app.css'),
+                AlpineComponent::make('full-calendar', __DIR__.'/../resources/dist/app.js'),
+            ], package: 'full-calendar');
+        }
     }
 }

@@ -77,9 +77,11 @@ class SupportServiceProvider extends PackageServiceProvider
             'as'   => 'image_cache',
         ])->where(['filename' => '[ \w\\.\\/\\-\\@\(\)\=]+']);
 
-        FilamentAsset::register([
-            Css::make('support', __DIR__ . '/../resources/dist/support.css'),
-        ], 'support');
+        if (class_exists('Filament\\Support\\Assets\\Asset')) {
+            FilamentAsset::register([
+                Css::make('support', __DIR__ . '/../resources/dist/support.css'),
+            ], 'support');
+        }
 
         $this->app->make(PermissionManager::class)->managePermissions();
     }

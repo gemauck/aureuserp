@@ -49,8 +49,10 @@ class TableViewsServiceProvider extends PackageServiceProvider
 
     public function registerCustomCss()
     {
-        FilamentAsset::register([
-            Css::make('table-views', __DIR__.'/../resources/dist/table-views.css'),
-        ], 'table-views');
+        if (class_exists('Filament\\Support\\Assets\\Asset')) {
+            FilamentAsset::register([
+                Css::make('table-views', __DIR__.'/../resources/dist/table-views.css'),
+            ], 'table-views');
+        }
     }
 }
