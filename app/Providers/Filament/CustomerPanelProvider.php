@@ -22,8 +22,8 @@ class CustomerPanelProvider extends PanelProvider
     {
         return $panel
             ->id('customer')
-            ->path('/')
-            ->homeUrl(url('/'))
+            ->path('customer')
+            ->homeUrl(url('/customer'))
             ->login()
             ->authPasswordBroker('customers')
             ->passwordReset()

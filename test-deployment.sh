@@ -40,5 +40,17 @@ else
 fi
 
 echo ""
-echo "🌐 Open in browser: https://aureus.abcotronics.co.za/admin"
+echo "5️⃣ Testing customer panel path..."
+customer_response=$(curl -s -o /dev/null -w "%{http_code}" -k https://aureus.abcotronics.co.za/customer)
+echo "   Customer panel status: $customer_response"
+if [ "$customer_response" == "200" ] || [ "$customer_response" == "302" ]; then
+    echo "   ✅ Customer panel is accessible"
+else
+    echo "   ⚠️  Customer panel returned: $customer_response"
+fi
+
+echo ""
+echo "🌐 URLs to test in browser:"
+echo "   Admin Panel:    https://aureus.abcotronics.co.za/admin"
+echo "   Customer Panel: https://aureus.abcotronics.co.za/customer"
 
