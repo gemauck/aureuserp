@@ -51,7 +51,8 @@
     },
     "scripts": {
         "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump"
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php -r \"putenv('DB_CONNECTION=array'); exec('timeout 30 php artisan package:discover --ansi || true');\""
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
