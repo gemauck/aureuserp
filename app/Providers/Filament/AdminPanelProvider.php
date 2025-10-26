@@ -84,25 +84,9 @@ class AdminPanelProvider extends PanelProvider
                     ->icon('icon-settings'),
             ])
             ->plugins([
-                FilamentShieldPlugin::make()
-                    ->gridColumns([
-                        'default' => 1,
-                        'sm'      => 1,
-                        'lg'      => 2,
-                        'xl'      => 3,
-                    ])
-                    ->sectionColumnSpan(1)
-                    ->checkboxListColumns([
-                        'default' => 1,
-                        'sm'      => 1,
-                        'lg'      => 2,
-                        'xl'      => 3,
-                    ])
-                    ->resourceCheckboxListColumns([
-                        'default' => 1,
-                        'sm'      => 2,
-                    ]),
-                PluginManager::make(),
+                // Temporarily disabled to fix 500 errors
+                // FilamentShieldPlugin::make(),
+                // PluginManager::make(),
             ])
             ->middleware([
                 EncryptCookies::class,
