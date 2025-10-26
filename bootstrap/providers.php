@@ -3,7 +3,8 @@
 return [
     App\Providers\AppServiceProvider::class,
     App\Providers\Filament\AdminPanelProvider::class,
-    App\Providers\Filament\CustomerPanelProvider::class,
+    // Temporarily disabled to fix conflicts
+    // App\Providers\Filament\CustomerPanelProvider::class,
     Webkul\Account\AccountServiceProvider::class,
     Webkul\Analytic\AnalyticServiceProvider::class,
     Webkul\Blog\BlogServiceProvider::class,
